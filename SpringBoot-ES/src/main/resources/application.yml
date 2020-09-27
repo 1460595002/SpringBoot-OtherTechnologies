@@ -1,5 +1,6 @@
-server:
-  port: 9090
 spring:
-  thymeleaf:
-    cache: false
+  datasource:
+    username: root
+    password: 1460595002
+    url: jdbc:mysql://127.0.0.1:3306/gulimall_pms?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
