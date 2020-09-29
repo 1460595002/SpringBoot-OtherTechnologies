@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,7 +39,10 @@ public class ContertConlltroller {
                                            @PathVariable("pageSize") int pageSize) throws Exception {
         List<Map<String, Object>> maps = contertService.searchPage(keyword, pageNo, pageSize);
 
+        //插入数据
         contertService.parseContent(keyword);
+//        maps.stream().collect(Collectors.toList()).forEach(System.out::println);
+
 //        return contertService.searchPage(keyword,pageNo,pageSize);
         //实现高亮搜索
         return contertService.searchPageHighlightBuilder(keyword,pageNo,pageSize);
