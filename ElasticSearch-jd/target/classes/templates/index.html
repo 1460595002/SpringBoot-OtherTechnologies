@@ -107,7 +107,8 @@
                             </p>
                             <!--标题-->
                             <p class="productTitle">
-                                <a v-html="result.title"></a>
+<!--                                <a v-html="result.title"></a>-->
+                                <a v-html="result.name"></a>
                             </p>
                             <!-- 店铺名 -->
                             <div class="productShop">
@@ -133,24 +134,20 @@
     new Vue({
         el: '#app',
         data: {
-            keyword: '',
+            keyword:'', // 搜索的关键字
             keyword1: '',
-            results: []
+            results:[]  // 搜索结果
         },
-        methods: {
+        methods:{
             searchKey(){
                 let keyword = this.keyword;
-                console.log(keyword);
 
 
-                axios.get('search/'+keyword+"/1/30")
-                    .then(function (response) {
-                        console.log(response);
-                        this.results = response.data;
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
+                // 对接接口
+                axios.get('search/' + keyword + "/1/30").then(response => {
+                    this.results = response.data; // 绑定数据
+                    console.log(response);
+                })
             },
             scrapyKey(){
                 let keyword1 = this.keyword1;
@@ -163,6 +160,7 @@
         }
     })
 </script>
+
 
 </body>
 </html>

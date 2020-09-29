@@ -56,7 +56,7 @@ public class HtmlParseUtil {
             String img = en.getElementsByTag("img").eq(0).attr("src");
         //  String price = en.getElementsByClass("p-price").eq(0).text();//bug 同时会取出两个价格 正常价格和会员价格
             String price = en.select("div.p-price> strong").eq(0).text();
-            String name = en.getElementsByClass("p-name").eq(0).text();
+            String name = en.getElementsByClass("p-title").eq(0).text();
             String shop = en.getElementsByClass("p-shop").eq(0).text();
 
             Contert contert=new Contert();

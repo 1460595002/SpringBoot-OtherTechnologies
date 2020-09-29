@@ -135,11 +135,12 @@ public class ContertService {
         //分页
         searchSourceBuilder.from(pageNo);//开始索引
         searchSourceBuilder.size(pageSize);//每页显示多少数据
-
         //精准匹配
-        TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("title", keyword);
-        searchSourceBuilder.query(termQueryBuilder);
-        searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
+
+            TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("name", keyword);
+            searchSourceBuilder.query(termQueryBuilder);
+            searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
+
 
 
         //执行搜索
@@ -180,7 +181,7 @@ public class ContertService {
         searchSourceBuilder.size(pageSize);
         //精准匹配
         if (!StringUtils.isEmpty(keyword)) {
-            TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("title", keyword);
+            TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("name", keyword);
             searchSourceBuilder.query(termQueryBuilder);
             searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
         }
@@ -189,7 +190,7 @@ public class ContertService {
         //高亮
         if (!StringUtils.isEmpty(keyword)) {
             HighlightBuilder highlightBuilder = new HighlightBuilder();
-            highlightBuilder.field("title");
+            highlightBuilder.field("name");
             highlightBuilder.requireFieldMatch(true);//多个高亮显示
             highlightBuilder.preTags("<span style='color:red'>");
             highlightBuilder.postTags("</span>");
@@ -206,7 +207,7 @@ public class ContertService {
 
             //解析高亮的字段
             Map<String, HighlightField> highlightFields = documentFields.getHighlightFields();
-            HighlightField title = highlightFields.get("title");
+            HighlightField title = highlightFields.get("name");
             Map<String, Object> sourceAsMap = documentFields.getSourceAsMap();
             if (title != null) {
                 Text[] fragments = title.fragments();
@@ -214,7 +215,7 @@ public class ContertService {
                 for (Text text : fragments) {
                     n_title += text;
                 }
-                sourceAsMap.put("title", n_title);
+                sourceAsMap.put("name", n_title);
             }
             list.add(sourceAsMap);
         }
