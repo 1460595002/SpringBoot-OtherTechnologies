@@ -1,0 +1,1 @@
+单点登录、SpringSession案例来自于 ：https://github.com/Xuxing2019/springboot-sso-simple-spring-session

@@ -1,0 +1,8 @@
+server:
+  port: 8203
+spring:
+  application:
+    name: springboot-sso-auth8203
+  redis:
+    host: 127.0.0.1
+    port: 6379
